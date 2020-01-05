@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <mat-card class="card-image card">
+                <img class="card-img-top" src="{{linkImage}}?alt=media" alt="{{dataArticle?.article_title}}" onerror="this.src='/assets/images/no-image.png'">
+                <div class="ql-editor card-body">                        
+                    <table width="100%" *ngIf="isLoading">
+                        <tr>
+                            <td align="center"><mat-spinner></mat-spinner></td>
+                        </tr>
+                    </table>
+                    <h1 class="entri-title">{{dataArticle?.article_title}}</h1>
+                    <div class="header-content" *ngIf="!isLoading">
+                        By <b>{{dataArticle?.user_name}}</b>, {{dataArticle?.article_date | date}}
+                        &nbsp;&nbsp;
+                        <mat-icon style="margin-top: 10px; font-size: 12px; margin-right: -8px;">visibility</mat-icon>
+                        {{dataArticle?.article_view}}
+                        <br>
+                        <div style="margin-top: 5px;">
+                            <span class="label">{{dataArticle?.category_name}}</span>
+                        </div>
+                    </div>
+                    <hr *ngIf="!isLoading">                        
+                    <div class="content-theme" [innerHTML]="datas"></div>
+                    <hr *ngIf="!isLoading">
+                    <div class="share" *ngIf="!isLoading">
+                        Share: &nbsp;
+                        <a target="_blank" href="https://telegram.me/share/url?url={{this.linkFrontend}}article/{{this.dataArticle['article_slug']}}" class="telegram">
+                            <mat-icon svgIcon="telegram"></mat-icon>
+                        </a>
+                        <a target="_blank" href="https://api.whatsapp.com/send?text={{this.linkFrontend}}article/{{this.dataArticle['article_slug']}}" class="wa">
+                            <mat-icon svgIcon="wa"></mat-icon>
+                        </a>
+                        <a target="_blank" href="https://twitter.com/intent/tweet?url={{this.linkFrontend}}article/{{this.dataArticle['article_slug']}}" class="twitter">
+                            <mat-icon svgIcon="twitter"></mat-icon>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/shareArticle/?url={{this.linkFrontend}}article/{{this.dataArticle['article_slug']}}" class="in">
+                            <mat-icon svgIcon="in"></mat-icon>
+                        </a>
+                    </div>
+                    <hr>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <mat-card class="card">
+                <p class="card-widget"><b style="font-size: 16px;">Newsletter</b><br>Get all latest content delivered straight to your inbox.</p>
+                <input [attr.tabindex]="-1" [(ngModel)]="sName" name="sName" type="text" class="input-name" placeholder="Name..." autocomplete="off">
+                <input [attr.tabindex]="-1" [(ngModel)]="sEmail" name="sEmail" type="email" class="input-email" placeholder="Email..." autocomplete="off">
+                <div style="margin-top: 10px;">
+                    <button class="btn-subs" (click)="subscribe(this.sName)" [attr.tabindex]="-1" mat-button>Subsribe</button>
+                </div>
+            </mat-card>
+            <mat-card class="card">
+                <p class="card-widget"><b style="font-size: 16px;">Popular Article</b></p>
+                <div class="list-group list-group-flush">
+                    <div class="row">
+                        <div class="col-12" *ngFor="let dataTop of dataTopArticle">
+                            <img src="{{linkFirebase}}{{dataTop?.article_images}}?alt=media" class="rounded lazyload blur-up float-left mr-3 lazyloaded thumb" alt="">
+                            <h6 class="mb-1">{{dataTop?.article_title}}</h6>
+                            <small class="text-secondary">{{dataTop?.article_date | date}} • {{dataTop?.article_view}}x views</small>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

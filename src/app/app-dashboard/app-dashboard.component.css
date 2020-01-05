@@ -1,0 +1,112 @@
+.title-image {
+    font-size: 2em;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 420px) {
+    .title-image {
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+.img-intro {
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+    .img-intro {
+        height: 400px;
+    }
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center {    
+    text-align: center;
+}
+
+.conss {
+    position: relative;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    width:100%;
+}
+
+.btn-lets {
+    margin-inline-start: auto;
+    text-align: center;
+    border: 1px solid;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    width: 150px;
+    text-decoration: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+@media only screen and (max-width: 500px) {
+    .btn-lets {
+        font-size: 12px;
+        width: 90px;
+        height: 40px;
+    }
+}
+
+.btn-subs {
+    font-size: 18px;
+    color: white;
+    border: 1px solid;
+    border-color: white;
+    height: 40px;
+}
+
+.card {
+    margin-top: 15px;
+    height: 100%;
+}
+
+.title-session {
+    font-size:22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.click {
+    text-decoration: none;
+}
+
+.newsletter {
+    background-color: #673AB7;
+    color: white;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.input-email {
+    background-color:rgba(0, 0, 0, 0);
+    color:white;
+    border: 1px solid;
+    border-radius: 5px;
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(197, 194, 194);
+    opacity: 1; /* Firefox */
+}
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(197, 194, 194);
+}
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(197, 194, 194);
+}

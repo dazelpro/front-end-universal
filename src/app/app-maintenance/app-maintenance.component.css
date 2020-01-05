@@ -1,0 +1,73 @@
+body { 
+    text-align: center; padding: 150px;
+}
+
+h1 { 
+    font-size: 50px;
+}
+
+body { 
+    font: 20px Helvetica, 
+    sans-serif; color: #333; 
+}
+
+article { 
+    display: block; 
+    text-align: left; 
+    width: 600px; 
+    margin: 0 auto;
+}
+
+a { color: #6a21ca; 
+    text-decoration: none; 
+}
+
+a:hover { color: #333; 
+    text-decoration: none; 
+
+}
+
+p {
+    font-size: 18px;
+}
+
+svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+}
+
+.terminal pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+}
+
+.terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+}
+
+.terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+}

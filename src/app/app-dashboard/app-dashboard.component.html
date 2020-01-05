@@ -1,0 +1,51 @@
+<div class="conss">
+    <img src="assets/images/bg-blue.png" style="height: 100%;" class="img-fluid img-intro" alt="Responsive image">
+    <div class="centered">
+        <h3 class="title-image">WELCOME TO MY WEBSITE</h3>
+        <a [attr.tabindex]="-1" routerLink="/blog" mat-flat-button class="btn-lets">Let's Read</a>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+            <div class="col-md-12 title-session">
+                <p>LATEST ARTICLES</p>                
+            </div>
+            <table width="100%" *ngIf="isLoading">
+                <tr>
+                    <td align="center"><mat-progress-bar mode="indeterminate"></mat-progress-bar></td>
+                </tr>
+            </table>
+            <div class="col-lg-4 col-md-6" style="margin-top: 15px;" *ngFor="let data of dataArticle">
+                <a routerLink="/article/{{data.article_slug}}" class="click">
+                <div class="card">
+                    <img class="card-img-top" src="{{this.linkImage}}/{{data.article_images}}?alt=media" alt="Card image cap" onerror="this.src='/assets/images/no-image.png'">
+                    <div class="card-body">
+                        <h5 class="card-title center">{{data.article_title}}</h5>
+                    </div>
+                </div></a>
+            </div>
+        <br>
+        <br>
+    </div>
+</div>
+<br>
+<br>
+<div class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 text-left" style="margin-top: 15px;">
+                <h4>Newsletter</h4>
+                <p>Enter your email so as not to miss other interesting articles.</p>
+                <input [attr.tabindex]="-1" type="text" class="input-email" placeholder="Email...">
+                <div style="margin-top: 10px;">
+                    <button class="btn-subs" [attr.tabindex]="-1" mat-stroked-button>Subsribe</button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 text-center" style="margin-top: 15px;">
+                <img src="assets/images/newsletter.png" class="img-fluid" alt="Responsive image">
+            </div>
+        </div>
+    </div>
+</div>
