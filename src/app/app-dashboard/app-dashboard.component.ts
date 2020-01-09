@@ -11,6 +11,7 @@ export class AppDashboardComponent implements OnInit {
 
     data: any={};
     dataArticle: [];
+    dataMeta: [];
     linkImage ="";
     linkFrontend ="";
     isLoading = true;
@@ -22,6 +23,7 @@ export class AppDashboardComponent implements OnInit {
     ) { 
         this.linkFrontend = rest.link_url_frontend();
         this.linkImage = 'https://firebasestorage.googleapis.com/v0/b/zel-blog.appspot.com/o';
+        this.takeMetaSEO();
     }
 
     async ngOnInit() {
@@ -32,36 +34,47 @@ export class AppDashboardComponent implements OnInit {
                 ? (this.dataArticle = data['data'])
                 : this.data.error(data['message']
             );
-            this.addMetaSEO();
+        })
+    }
+
+    async takeMetaSEO() {
+        await this.rest.getTagMeta().subscribe((data) => {
+            this.isLoading = false;
+            this.data = data['item'];
+            data['success']
+                ? (this.dataMeta = data['data'][0])
+                : this.data.error(data['message']
+            );
+            this.addMetaSEO()
         })
     }
 
     addMetaSEO() {
         this.meta.addTags([
             // Tag Meta Default
-            {name: 'title',                     content: 'DAZELPRO : Website Tutorial Pemrograman Web'},
-            {name: 'description',               content: 'Website ini menyediakan tutorial seputar Dunia IT terutama pada Bahasa Pemrograman Berbasis Web. Tutorial dikemas serapi mungkin agar mudah dipahami.'},
-            {name: 'keywords',                  content: 'dazelpro, dazelpro my id, tutorial web pemula'},
+            {name: 'title',                     content: this.dataMeta['site_title']},
+            {name: 'description',               content: this.dataMeta['site_description']},
+            {name: 'keywords',                  content: this.dataMeta['site_keyword']},
             {name: 'revisit-after',             content: '1 days'},
-            {name: 'author',                    content: 'Zeldianto Eka Putra'},
+            {name: 'author',                    content: this.dataMeta['site_author']},
             {name: 'robots',                    content: 'index, follow'},
             // Tag Meta OG
             {property: 'og:type',               content: 'website'},
             {property: 'og:locale',             content: 'id_ID'},
             {property: 'og:locale:alternate',   content: 'ms_MY'},
-            {property: 'og:title',              content: 'DAZELPRO : Website Tutorial Pemrograman Web'},
-            {property: 'og:description',        content: 'Website ini menyediakan tutorial seputar Dunia IT terutama pada Bahasa Pemrograman Berbasis Web. Tutorial dikemas serapi mungkin agar mudah dipahami.'},
-            {property: 'og:image',              content: this.linkFrontend+`assets/images/logo-nav.png`},
+            {property: 'og:title',              content: this.dataMeta['site_title']},
+            {property: 'og:description',        content: this.dataMeta['site_description']},
+            {property: 'og:image',              content: this.linkFrontend+`assets/images/logo.png`},
             {property: 'og:url',                content: this.linkFrontend},
-            {property: 'og:site_name',          content: 'dazelpro'},
+            {property: 'og:site_name',          content: 'DAZELPRO'},
             // Tag Meta Twitter
             {property: 'twitter:card',          content: 'summary_large_image'},
-            {property: 'twitter:image',         content: this.linkFrontend+`assets/images/logo-nav.png`},
-            {property: 'twitter:description',   content: 'Website ini menyediakan tutorial seputar Dunia IT terutama pada Bahasa Pemrograman Berbasis Web. Tutorial dikemas serapi mungkin agar mudah dipahami.'},
-            {property: 'twitter:title',         content: 'DAZELPRO : Website Tutorial Pemrograman Web'},
+            {property: 'twitter:image',         content: this.linkFrontend+`assets/images/logo.png`},
+            {property: 'twitter:description',   content: this.dataMeta['site_description']},
+            {property: 'twitter:title',         content: this.dataMeta['site_title']},
             {property: 'twitter:site',          content: this.linkFrontend},
         ]);
-        this.title.setTitle('DAZELPRO : Website Tutorial Pemrograman Web');
+        this.title.setTitle(this.dataMeta['site_title']);
     }
 
 }

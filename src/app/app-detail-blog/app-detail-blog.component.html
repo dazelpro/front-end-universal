@@ -56,9 +56,11 @@
                 <div class="list-group list-group-flush">
                     <div class="row">
                         <div class="col-12" *ngFor="let dataTop of dataTopArticle">
-                            <img src="{{linkFirebase}}{{dataTop?.article_images}}?alt=media" class="rounded lazyload blur-up float-left mr-3 lazyloaded thumb" alt="">
-                            <h6 class="mb-1">{{dataTop?.article_title}}</h6>
-                            <small class="text-secondary">{{dataTop?.article_date | date}} • {{dataTop?.article_view}}x views</small>
+                            <a href="/article/{{dataTop?.article_slug}}">
+                                <img src="{{linkFirebase}}{{dataTop?.article_images}}?alt=media" class="rounded lazyload blur-up float-left mr-3 lazyloaded thumb" alt="">
+                                <h6 class="mb-1">{{dataTop?.article_title}}</h6>
+                                <small class="text-secondary">{{dataTop?.article_date | date}} • {{dataTop?.article_view}}x views</small>
+                            </a>
                             <hr>
                         </div>
                     </div>

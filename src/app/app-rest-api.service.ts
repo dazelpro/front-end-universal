@@ -12,7 +12,7 @@ export class AppRestApiService {
 
     link_url(){
         // return 'http://localhost:8080';
-        return 'https://dazelpro-backend.herokuapp.com';
+        return 'https://mean-back-end-v1.herokuapp.com';
     }
 
     link_url_frontend(){
@@ -21,6 +21,10 @@ export class AppRestApiService {
     }
 
     // API Public Tanpa Token
+    getTagMeta(){
+        return this.http.get(`${this.link_url()}/api-public-article/show-meta-dashboard`);
+    }
+
     getArticleDashboard(){
         return this.http.get(`${this.link_url()}/api-public-article/show-article-dashboard`);
     }
